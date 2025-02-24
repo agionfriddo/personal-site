@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply antialiased;
+  }
+
+  ::selection {
+    @apply bg-accent-light text-primary-dark dark:bg-accent-dark dark:text-primary-light;
+  }
+}
+
+@layer utilities {
+  .prose {
+    @apply max-w-none;
+  }
+
+  .prose a {
+    @apply text-accent-dark dark:text-accent-light no-underline hover:underline;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-primary-light dark:bg-primary-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-dark/20 dark:bg-neutral-light/20 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-dark/30 dark:bg-neutral-light/30;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  @apply transition-colors duration-200;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

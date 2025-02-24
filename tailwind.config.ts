@@ -30,6 +30,25 @@ const config: Config = {
         sans: ["var(--font-inter)"],
         mono: ["var(--font-roboto-mono)"],
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "none",
+            color: "inherit",
+            a: {
+              color: "#4A90E2",
+              "&:hover": {
+                color: "#2B6CB0",
+              },
+            },
+            code: {
+              color: "#4A90E2",
+              "&::before": { content: '""' },
+              "&::after": { content: '""' },
+            },
+          },
+        },
+      },
       animation: {
         "fade-in": "fadeIn 0.5s ease-in-out",
         "slide-up": "slideUp 0.5s ease-out",
@@ -46,7 +65,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };
 
 export default config;

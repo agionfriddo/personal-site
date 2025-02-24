@@ -1,0 +1,123 @@
+export const metadata = {
+  title: "Building a Personal Site with Next.js and TailwindCSS",
+  description:
+    "A deep dive into creating a modern, minimalist personal website using Next.js 13, TailwindCSS, and TypeScript.",
+  date: "February 24, 2024",
+  tags: ["Next.js", "TailwindCSS", "TypeScript", "Web Development"],
+};
+
+In this post, I'll walk through how I built this personal website using Next.js 13, TailwindCSS, and TypeScript. I'll cover everything from initial setup to deployment, including dark mode implementation and responsive design.
+
+## Why Next.js?
+
+Next.js provides an excellent developer experience with features like:
+
+- Server-side rendering for better performance
+- Automatic code splitting for faster page loads
+- Built-in routing system
+- API routes for backend functionality
+- Great TypeScript support
+
+## Setting Up the Project
+
+First, create a new Next.js project with all the necessary dependencies:
+
+```bash
+npx create-next-app@latest my-site --typescript --tailwind --eslint
+```
+
+This command sets up a new project with:
+
+- Next.js 13
+- TypeScript for type safety
+- TailwindCSS for styling
+- ESLint for code quality
+
+## Adding Dark Mode
+
+TailwindCSS makes it easy to add dark mode support. First, configure `tailwind.config.ts`:
+
+```typescript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: "class",
+  // ... rest of your config
+};
+```
+
+Then create a theme provider component:
+
+```typescript
+"use client";
+
+import { createContext, useContext, useEffect, useState } from "react";
+
+type Theme = "light" | "dark";
+
+const ThemeContext = createContext({
+  theme: "light" as Theme,
+  toggleTheme: () => {},
+});
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState<Theme>("light");
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as Theme;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark");
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+```
+
+## Styling with TailwindCSS
+
+For consistent styling across the site, I created a set of custom colors and utilities:
+
+```typescript
+// tailwind.config.ts
+const config = {
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          light: "#F5F9FF",
+          DEFAULT: "#4A90E2",
+          dark: "#1A2028",
+        },
+        accent: {
+          light: "#A8D1FF",
+          DEFAULT: "#4A90E2",
+          dark: "#2B6CB0",
+        },
+      },
+    },
+  },
+};
+```
+
+## Conclusion
+
+Building a personal website with Next.js and TailwindCSS has been a great experience. The combination provides:
+
+- Excellent developer experience
+- Great performance
+- Easy customization
+- Type safety with TypeScript
+
+Stay tuned for more posts about specific features and implementations!

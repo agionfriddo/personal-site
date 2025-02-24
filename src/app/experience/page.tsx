@@ -131,7 +131,7 @@ export default function Experience() {
           animate="visible"
           className="space-y-16 md:space-y-24"
         >
-          {experiences.map((exp, index) => (
+          {experiences.map((exp) => (
             <motion.div
               key={exp.company + exp.period}
               variants={itemVariants}

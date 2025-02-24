@@ -12,7 +12,7 @@ export default function Home() {
         className="space-y-6 max-w-2xl mx-auto text-center md:text-left"
       >
         <h1 className="text-4xl md:text-5xl font-bold font-mono">
-          Hi, I'm Andrew Gionfriddo
+          Hi, I&apos;m Andrew Gionfriddo
         </h1>
 
         <motion.p

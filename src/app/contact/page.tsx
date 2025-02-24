@@ -64,7 +64,7 @@ export default function Contact() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setSubmitStatus("success");
       setFormData({ name: "", email: "", message: "" });
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);

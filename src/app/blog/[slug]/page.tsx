@@ -51,11 +51,11 @@ export default function BlogPost() {
           <h1 className="text-4xl font-bold mb-4 transition-colors duration-200 dark:text-white">
             {post.title}
           </h1>
-          <div className="flex items-center gap-4 mb-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
             <time className="text-sm text-gray-500 dark:text-gray-400 font-mono">
               {post.date}
             </time>
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
